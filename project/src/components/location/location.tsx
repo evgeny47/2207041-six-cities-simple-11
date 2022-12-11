@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/useApp';
-import { changeCity, fillOffers } from '../../store/actions/actions';
+import { useAppDispatch } from '../../hooks/useApp';
 import { fetchOfferAction } from '../../store/api-actions/api-actions';
 import { City } from '../../types/types';
 
@@ -11,13 +10,9 @@ type LocationProps = {
 
 function Location(item: LocationProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const selectedOffers = useAppSelector((state) => state.offers);
 
   const changeCityHandler = (city:City) => {
-    dispatch(changeCity(city));
-    dispatch(fetchOfferAction());
-    const offers = selectedOffers.filter((i) => i.city.name === city.name);
-    dispatch(fillOffers(offers));
+    dispatch(fetchOfferAction(city));
   };
 
   return(

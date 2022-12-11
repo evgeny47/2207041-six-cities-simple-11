@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useApp';
 import { sortOffersPriceHighLow, sortOffersPriceLowHigh, sortOffersTopRateFirst } from '../../store/actions/actions';
 import { fetchOfferAction } from '../../store/api-actions/api-actions';
+import { getCity, getOffers } from '../../store/offer-process/selectors';
 import { SortMenu, tabIndex } from '../../types/constants';
 
 function PlaceOptionList(): JSX.Element {
   const dispatch = useAppDispatch();
-  const offers = useAppSelector((stateOffers) => stateOffers.offers);
+  const city = useAppSelector(getCity);
+  const offers = useAppSelector(getOffers);
   const menuItems = [SortMenu.Popular, SortMenu.PriceLowHigh, SortMenu.PriceHighLow, SortMenu.TopRateFirst];
   const [state, setState] = useState(false);
   const onItemOver = () => setState(true);
@@ -30,7 +32,7 @@ function PlaceOptionList(): JSX.Element {
           dispatch(sortOffersTopRateFirst(offers));
           break;
         default:
-          dispatch(fetchOfferAction());
+          dispatch(fetchOfferAction(city));
           break;
       }
       setSelectedValue(val);

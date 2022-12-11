@@ -2,10 +2,11 @@ import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/useApp';
 import { logoutAction } from '../../store/api-actions/api-actions';
+import { getUserData } from '../../store/user-process/selectors';
 
 function UserAuth(): JSX.Element {
 
-  const userData = useAppSelector((state) => state.userData);
+  const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logoutAction());

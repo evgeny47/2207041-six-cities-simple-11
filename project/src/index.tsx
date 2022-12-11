@@ -6,8 +6,9 @@ import {store} from './store';
 import { fetchOfferAction, checkAuthAction } from './store/api-actions/api-actions';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CITIES } from './mocks/coordinates';
 
-store.dispatch(fetchOfferAction());
+store.dispatch(fetchOfferAction(CITIES[0]));
 store.dispatch(checkAuthAction());
 
 const elRoot = document.getElementById('root');

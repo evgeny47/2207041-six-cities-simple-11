@@ -1,13 +1,6 @@
 import {createAction} from '@reduxjs/toolkit';
-import { AppRoute, AuthorizationStatus, SortMenu } from '../../types/constants';
-import { City, Offer, Offers, Reviews, UserData } from '../../types/types';
-
-export const changeCity = createAction('city/changeCity', (city: City) => ({
-  payload: city,
-}));
-export const fillOffers = createAction('city/fillOffers', (offers: Offers) => ({
-  payload: offers,
-}));
+import { AppRoute, SortMenu } from '../../types/constants';
+import { Offer, Offers, Reviews, UserData } from '../../types/types';
 
 export const sortOffersPriceLowHigh = createAction('city/sortOffersPriceLowHigh', (offers: Offers) => ({
   type: SortMenu.PriceLowHigh,
@@ -51,25 +44,7 @@ export const sortOffersTopRateFirst = createAction('city/sortOffersTopRateFirst'
     return 0;})
 }));
 
-export const sortReviews = createAction('city/sortReview', (reviews: Reviews) => ({
-  type: 'SortReview',
-  payload: reviews.slice().sort((a, b) => {
-    if(a.date > b.date)
-    {
-      return -1;
-    }
-    if(a.date < b.date)
-    {
-      return 1;
-    }
-    return 0;}).slice(0, 10)
-}));
-
 export const loadOffers = createAction<Offers>('data/loadOffers');
-
-export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');
-
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
 export const setError = createAction<string | null>('data/setError');
 

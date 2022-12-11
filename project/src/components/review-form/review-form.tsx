@@ -4,16 +4,18 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useApp';
 import { fetchAddReview } from '../../store/api-actions/api-actions';
 import { Review } from '../../types/types';
 import {toast} from 'react-toastify';
+import { getUserData } from '../../store/user-process/selectors';
+import { getError, getStateReview } from '../../store/review-process/selector';
 
 function ReviewForm(): JSX.Element {
   const MIN_TEXT_LENGTH = 50;
   const MAX_TEXT_LENGTH = 300;
-  const stateReview = useAppSelector((state) => state.stateReview);
-  const stateError = useAppSelector((state) => state.error);
+  const stateReview = useAppSelector(getStateReview);
+  const stateError = useAppSelector(getError);
   const params = useParams();
   const id: string = params.id ?? '';
   const dispatch = useAppDispatch();
-  const userData = useAppSelector((state) => state.userData);
+  const userData = useAppSelector(getUserData);
 
   const [formData, setFormData] = useState({
     rating: '',

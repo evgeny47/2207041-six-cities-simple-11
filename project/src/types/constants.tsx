@@ -48,3 +48,10 @@ export enum AuthorizationStatus {
     NoAuth = 'NO_AUTH',
     Unknown = 'UNKNOWN',
   }
+
+export enum NameSpaceSlice {
+    User = 'USER',
+    Offer = 'OFFER',
+    NearOffers = 'NEAR_OFFERS',
+    Review = 'REVIEW',
+}

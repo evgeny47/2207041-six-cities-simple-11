@@ -8,12 +8,14 @@ import { useAppSelector } from '../../hooks/useApp';
 import PlaceOptionList from '../../components/place-option-list/place-option-list';
 import HeaderNav from '../../components/header-nav/header-nav';
 import { useNavigate } from 'react-router-dom';
+import { getCity, getOffers } from '../../store/offer-process/selectors';
 
 
 function MainPage(): JSX.Element {
   const navigate = useNavigate();
-  const selectedCity = useAppSelector((state) => state.city);
-  const selectedOffers = useAppSelector((state) => state.offers.filter((i) => i.city.name === selectedCity.name));
+  const selectedCity = useAppSelector(getCity);
+  const offers = useAppSelector(getOffers);
+  const selectedOffers = offers.filter((i) => i.city.name === selectedCity.name);
   const topOfferCity: TopOffer = {cardsCount: AppSettings.CardsCount, offers: selectedOffers};
   const city = selectedOffers.length > 0 ? selectedOffers[0].city : selectedCity;
   const points: Point[] = [];

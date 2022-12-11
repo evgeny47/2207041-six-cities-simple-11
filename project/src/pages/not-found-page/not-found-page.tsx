@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import LocationList from '../../components/location-list/location-list';
 import { useAppSelector } from '../../hooks/useApp';
+import { getCity } from '../../store/offer-process/selectors';
 import { AppRoute } from '../../types/constants';
 
 function NotFoundPage(): JSX.Element {
-  const selectedCity = useAppSelector((state) => state.city);
+  const selectedCity = useAppSelector(getCity);
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>

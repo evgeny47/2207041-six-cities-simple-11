@@ -1,9 +1,10 @@
 import HeaderNav from '../../components/header-nav/header-nav';
 import LocationList from '../../components/location-list/location-list';
 import { useAppSelector } from '../../hooks/useApp';
+import { getCity } from '../../store/offer-process/selectors';
 
 function MainEmptyPage(): JSX.Element {
-  const selectedCity = useAppSelector((state) => state.city);
+  const selectedCity = useAppSelector(getCity);//useAppSelector((state) => state.city);
 
   return(
     <div className="page page--gray page--main">

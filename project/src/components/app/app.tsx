@@ -11,10 +11,12 @@ import PrivateRoute from '../../private-route';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import {useAppSelector} from '../../hooks/useApp';
 import Spinner from '../../pages/spinner/spinner';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getOfferLoadingStatus } from '../../store/offer-process/selectors';
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const offerLoadingStatus = useAppSelector((state) => state.offerLoadingStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const offerLoadingStatus = useAppSelector(getOfferLoadingStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || offerLoadingStatus) {
     return (
